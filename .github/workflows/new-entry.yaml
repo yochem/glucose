@@ -28,8 +28,8 @@ jobs:
     - name: Install nl locale
       run: |
         cd /usr/share/locales
-        ./install-language-pack nl_NL
-        dpkg-reconfigure locales
+        sudo ./install-language-pack nl_NL
+        sudo dpkg-reconfigure locales
     - name: Generate web page from template
       run: |
         python3 convert.py \
