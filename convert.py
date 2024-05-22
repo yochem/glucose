@@ -8,7 +8,7 @@ args = sys.argv[1:]
 
 glucose_value = round(float(args[0]), 1)
 
-locale.setlocale(locale.LC_TIME, "nl_NL")
+locale.setlocale(locale.LC_TIME, "nl_NL.UTF-8")
 dt = datetime.fromisoformat(args[1])
 
 date = dt.strftime("%d %B %Y")
