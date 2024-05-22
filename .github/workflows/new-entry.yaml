@@ -31,7 +31,7 @@ jobs:
           "${{ github.event.inputs.value }}" \
           "${{ github.event.inputs.datetime }}"
     - name: Commit html page
-    - uses: stefanzweifel/git-auto-commit-action@v5
+      uses: stefanzweifel/git-auto-commit-action@v5
       with:
         commit_message: New glucose entry
         file_pattern: public/index.html
