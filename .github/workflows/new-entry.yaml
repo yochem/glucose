@@ -7,8 +7,10 @@ on:
         required: true
       datetime:
         required: true
+      reldatetime:
+        required: false
       unit:
-        required: true
+        required: false
 
 # allow this workflow to write (to the build branch)
 permissions:
@@ -22,6 +24,7 @@ jobs:
       run: |
         echo "${{ github.event.inputs.value }}"
         echo "${{ github.event.inputs.datetime }}"
+        echo "${{ github.event.inputs.reldatetime }}"
         echo "${{ github.event.inputs.unit }}"
     # - uses: stefanzweifel/git-auto-commit-action@v5
     #   with:
