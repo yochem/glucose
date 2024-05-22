@@ -5,6 +5,10 @@ on:
     inputs:
       value:
         required: true
+      datetime:
+        required: true
+      unit:
+        required: true
 
 # allow this workflow to write (to the build branch)
 permissions:
