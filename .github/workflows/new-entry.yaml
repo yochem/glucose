@@ -25,8 +25,11 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-    - name: locale check
-      run: locale -a
+    - name: Install nl locale
+      run: |
+        cd /usr/share/locales
+        ./install-language-pack nl_NL
+        dpkg-reconfigure locales
     - name: Generate web page from template
       run: |
         python3 convert.py \
