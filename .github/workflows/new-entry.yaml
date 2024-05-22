@@ -12,7 +12,6 @@ on:
       unit:
         required: false
 
-# allow this workflow to write (to the build branch)
 permissions:
   contents: write
 
@@ -20,16 +19,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: show value
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Generate web page from template
       run: |
-        echo "${{ github.event.inputs.value }}"
-        echo "${{ github.event.inputs.datetime }}"
-        echo "${{ github.event.inputs.reldatetime }}"
-        echo "${{ github.event.inputs.unit }}"
-    # - uses: stefanzweifel/git-auto-commit-action@v5
-    #   with:
-    #     commit_message: Add glucose entry
-    #     # file_pattern: events.json
-    #     push_options: '--force'
-    #     branch: build
-    #     create_branch: true
+        python3 convert.py \
+          "${{ github.event.inputs.value }}" \
+          "${{ github.event.inputs.datetime }}"
+    - name: Commit html page
+    - uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: New glucose entry
+        file_pattern: public/index.html
+        push_options: '--force'
+        branch: build
+        create_branch: true
