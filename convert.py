@@ -8,7 +8,12 @@ args = sys.argv[1:]
 
 glucose_value = round(float(args[0]), 1)
 
-locale.setlocale(locale.LC_TIME, "nl_NL.ISO-8859-1")
+try:
+    locale.setlocale(locale.LC_TIME, "nl_NL")
+except locale.Error:
+    locale.setlocale(locale.LC_TIME, "nl_NL.ISO-8859-1")
+    print("iso was necessary")
+
 dt = datetime.fromisoformat(args[1])
 
 date = dt.strftime("%d %B %Y")
@@ -18,7 +23,7 @@ variables = {
     "value": glucose_value,
     "date": date,
     "time": time,
-    "workflow_url": "",
+    "workflow_url": args[2],
 }
 
 input_file = Path("template.html")
