@@ -35,11 +35,12 @@ jobs:
         python3 convert.py \
           "${{ github.event.inputs.value }}" \
           "${{ github.event.inputs.datetime }}"
-    - name: Commit html page
-      uses: stefanzweifel/git-auto-commit-action@v5
+    - name: Setup Pages
+      uses: actions/configure-pages@v5
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
       with:
-        commit_message: New glucose entry
-        file_pattern: public/index.html
-        push_options: '--force'
-        branch: build
-        create_branch: true
+        path: 'public/'
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
