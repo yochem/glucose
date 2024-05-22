@@ -25,7 +25,8 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-    - run: locale -a
+    - name: locale check
+      run: locale -a
     - name: Generate web page from template
       run: |
         python3 convert.py \
