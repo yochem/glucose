@@ -6,21 +6,25 @@ from string import Template
 
 args = sys.argv[1:]
 
-glucose_value = round(float(args[0]), 1)
-
-try:
-    locale.setlocale(locale.LC_TIME, "nl_NL")
-except locale.Error:
-    locale.setlocale(locale.LC_TIME, "nl_NL.ISO-8859-1")
-    print("iso was necessary")
+locale.setlocale(locale.LC_TIME, "nl_NL")
 
 dt = datetime.fromisoformat(args[1])
 
 date = dt.strftime("%d %B %Y")
 time = dt.strftime("%H:%M")
 
+glucose_value = round(float(args[0]), 1)
+glucose_value_line = f"{glucose_value} mmol/L"
+
+if glucose_value < 4 or glucose_value > 15:
+    glucose_value_line += " :("
+elif glucose_value <= 5.5 or glucose_value >= 10:
+    glucose_value_line += " :|"
+else:
+    glucose_value_line += " :)"
+
 variables = {
-    "value": glucose_value,
+    "value": glucose_value_line,
     "date": date,
     "time": time,
     "workflow_url": args[2],
