@@ -39,10 +39,10 @@ jobs:
         RUN_URL="https://github.com/yochem/cgm/actions/runs/${{ github.run_id }}"
 
         sed \
-          -e "s#{{DATE}}#${DATE}#g" \
-          -e "s#{{TIME}}#${TIME}#g" \
-          -e "s#{{VALUE}}#${VALUE}#g" \
-          -e "s#{{RUN_URL}}#${RUN_URL}#g" \
+          -e "s/{{DATE}}/${DATE}/g" \
+          -e "s/{{TIME}}/${TIME}/g" \
+          -e "s/{{VALUE}}/${VALUE}/g" \
+          -e "s/{{RUN_URL}}/${RUN_URL}/g" \
           template.html > public/index.html
     - name: Setup Pages
       uses: actions/configure-pages@v5
