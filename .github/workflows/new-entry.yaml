@@ -32,7 +32,7 @@ jobs:
         python3 convert.py \
           "${{ github.event.inputs.value }}" \
           "${{ github.event.inputs.datetime }}" \
-          "{{ github.run_id }}"
+          "${{ github.run_id }}"
     - name: Setup Pages
       uses: actions/configure-pages@v5
     - name: Upload artifact
