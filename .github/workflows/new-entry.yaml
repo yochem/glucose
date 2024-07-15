@@ -27,17 +27,12 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-    - name: Install nl locale
-      run: |
-        cd /usr/share/locales
-        sudo ./install-language-pack nl_NL
-        sudo dpkg-reconfigure locales
     - name: Generate web page from template
       run: |
         python3 convert.py \
           "${{ github.event.inputs.value }}" \
           "${{ github.event.inputs.datetime }}" \
-          "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          "{{ github.run_id }}"
     - name: Setup Pages
       uses: actions/configure-pages@v5
     - name: Upload artifact

@@ -1,4 +1,3 @@
-import locale
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -6,11 +5,25 @@ from string import Template
 
 args = sys.argv[1:]
 
-locale.setlocale(locale.LC_TIME, "nl_NL")
+months = [
+    "januari",
+    "februari",
+    "maart",
+    "april",
+    "mei",
+    "juni",
+    "juli",
+    "augustus",
+    "september",
+    "oktober",
+    "november",
+    "december",
+]
 
 dt = datetime.fromisoformat(args[1])
 
-date = dt.strftime("%d %B %Y")
+date = f"{dt.day} {months[dt.month-1]} {dt.year}"
+
 time = dt.strftime("%H:%M")
 
 glucose_value = round(float(args[0]), 1)
@@ -19,7 +32,7 @@ variables = {
     "value": glucose_value,
     "date": date,
     "time": time,
-    "workflow_url": args[2],
+    "workflow_url": f"https://github.com/yochem/glucose/actions/runs/{args[2]}",
 }
 
 input_file = Path("template.html")
