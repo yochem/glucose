@@ -11,10 +11,9 @@ A simple web page (in Dutch) that shows my last measured glucose value
 ## How it works
 
 Using Apple Shortcuts, a shortcut is fired when I open the
-[xdrip4ios](https://github.com/paulplant/xdripswift) app. The shortcut reads
-the last glucose value from the Health app (which xdrip puts in there), and
-sends it to a GitHub API using the action provided by the GitHub app. TODO: add
-screenshot.
+[xdrip4ios](https://github.com/paulplant/xdripswift) app. The shortcut gets the
+last glucose value from xdrip, and sends it to a GitHub API using the action
+provided by the GitHub app. TODO: add screenshot.
 
 The GitHub API allows to run an action with input values. The [GH action
 workflow](./.github/workflows/new-entry.yaml) then runs a [Python

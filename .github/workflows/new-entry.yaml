@@ -37,7 +37,7 @@ jobs:
         python3 convert.py \
           "${{ github.event.inputs.value }}" \
           "${{ github.event.inputs.datetime }}" \
-          "https://github.com/yochem/cgm/actions/runs/${{ github.run_id }}"
+          "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
     - name: Setup Pages
       uses: actions/configure-pages@v5
     - name: Upload artifact
