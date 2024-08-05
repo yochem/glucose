@@ -15,6 +15,8 @@ Using Apple Shortcuts, a shortcut is fired when I open the
 last glucose value from xdrip, and sends it to a GitHub API using the action
 provided by the GitHub app. TODO: add screenshot.
 
+[here's the shortcut](https://www.icloud.com/shortcuts/2aa64252c2db41d5a07a13d9cf9ed576).
+
 The GitHub API allows to run an action with input values. The [GH action
 workflow](./.github/workflows/new-entry.yaml) then runs a [shell
 script](./convert.sh) to convert the data provided by the shortcut to be human
