@@ -5,6 +5,8 @@ set -u
 # needed for MacOS
 command -v gdate >/dev/null && datecmd=gdate || datecmd=date
 
+export TZ="Europe/Amsterdam"
+
 # use dutch month name
 export date=$(LC_ALL=nl_NL $datecmd -d $input_datetime "+%-d %B %Y")
 export time=$($datecmd -d $input_datetime "+%H:%M")
