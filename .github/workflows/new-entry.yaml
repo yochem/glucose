@@ -24,7 +24,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
     - name: Write inputs to json file
-      run: echo "${{ toJson(github.event.inputs) }}" > public/data.json
+      run: echo ${{ toJson(github.event.inputs) }} > public/data.json
     - name: Setup Pages
       uses: actions/configure-pages@v5
     - name: Upload artifact
