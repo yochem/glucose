@@ -60,29 +60,26 @@
 		<div class="small-text">op</div>
 		<div class="small-text" id="date">–</div>
 	</main>
-	<footer>
-		<a id="workflow" href="https://github.com/yochem/glucose/actions/runs/">[bekijk update]</a>
-	</footer>
+	<!--<footer>-->
+	<!--	<a id="workflow" href="https://github.com/yochem/glucose/actions/runs/">[bekijk update]</a>-->
+	<!--</footer>-->
 	<script>
 		fetch("data.json")
 			.then(response => {
 				return response.json();
 			})
 			.then(data => {
-				console.log(data);
-				const val = data.input_value.toFixed(1);
+				const val = data.value.toFixed(1);
 				document.getElementById('value').innerText = val;
 				document.querySelector('title').innerText += val;
 
-				const dt = new Date(data.input_datetime);
+				const dt = new Date(data.datetime);
 
 				const date = dt.toLocaleString('nl-NL', {dateStyle: "long"})
 				document.getElementById('date').innerText = date;
 
 				const time = dt.toLocaleString('nl-NL', {timeStyle: "short"})
 				document.getElementById('time').innerText = time;
-
-				document.getElementById('workflow').href += data.input_action_id;
 			})
 	</script>
 </body>
