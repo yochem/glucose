@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="robots" content="noindex,nofollow">
+	<title>Yochems bloedglucose: </title>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet" />
+	<link rel="icon"
+		href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍭</text></svg>">
+	<style>
+		body {
+			justify-content: center;
+			font-family: 'Roboto', sans-serif;
+			background-color: #e0f7fa;
+			text-align: center;
+			margin: 0;
+		}
+
+		main {
+			margin-top: 6rem;
+		}
+
+		footer {
+			position: absolute;
+			bottom: 0;
+			margin-bottom: 4rem;
+			width: 100%;
+		}
+
+		.small-text {
+			font-size: 2rem;
+			color: #00796b;
+			margin: 0.7rem 0;
+		}
+
+		.large-text {
+			font-size: 2.5rem;
+			font-weight: bold;
+			color: #004d40;
+		}
+
+		.largest-text {
+			font-size: 3.5rem;
+			font-weight: bold;
+			color: #d32f2f;
+			margin: 0.9rem 0;
+		}
+	</style>
+
+</head>
+
+<body>
+	<main>
+		<div class="small-text">Yochems bloedglucose was</div>
+		<div class="largest-text"><span id="value">–</span> mmol/L</div>
+		<div class="small-text">om</div>
+		<div class="large-text" id="time">–</div>
+		<div class="small-text">op</div>
+		<div class="small-text" id="date">–</div>
+	</main>
+	<footer>
+		<a id="workflow" href="https://github.com/yochem/glucose/actions/runs/">[bekijk update]</a>
+	</footer>
+	<script>
+		fetch("data.json")
+			.then(response => {
+				return response.json();
+			})
+			.then(data => {
+				console.log(data);
+				const val = data.input_value.toFixed(1);
+				document.getElementById('value').innerText = val;
+				document.querySelector('title').innerText += val;
+
+				const dt = new Date(data.input_datetime);
+
+				const date = dt.toLocaleString('nl-NL', {dateStyle: "long"})
+				document.getElementById('date').innerText = date;
+
+				const time = dt.toLocaleString('nl-NL', {timeStyle: "short"})
+				document.getElementById('time').innerText = time;
+
+				document.getElementById('workflow').href += data.input_action_id;
+			})
+	</script>
+</body>
+
+</html>
